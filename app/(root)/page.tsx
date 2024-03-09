@@ -3,7 +3,6 @@ import Search from "@/components/Search"
 import Collection from "@/components/shared/Collection"
 import { Button } from "@/components/ui/button"
 import { getAllEvents } from "@/lib/actions/event.action"
-import { listOfEvent } from "@/lib/apiFetch"
 import Image from "next/image"
 import Link from "next/link"
 
