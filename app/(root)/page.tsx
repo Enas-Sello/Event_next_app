@@ -48,7 +48,7 @@ export default async function Home() {
           Trust by <br /> Thousands of Events
         </h2>
         <div className="flex w-full flex-col gap-5 md:flex-row">
-          <Search />
+          <Search  />
           <CategoryFilter />
         </div>
         <Collection

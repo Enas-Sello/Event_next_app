@@ -30,7 +30,7 @@ const Collection = ({
               )
             })}
           </ul>
-          <div>pagination</div>
+          {/* <div>pagination</div> */}
         </div>
       ) : (
         <div className=" flex-center wrapper min-h-[200px] w-full flex-col gap-3 rounded-[14px] bg-gray-50 py-28 text-center ">
