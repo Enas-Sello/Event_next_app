@@ -116,6 +116,7 @@ const EventForm = ({ userId, type, event, eventId }: EventFormProps) => {
             name="title"
             render={({ field }) => (
               <FormItem className="w-full">
+                
                 <FormControl>
                   <Input
                     placeholder="Event Title"
