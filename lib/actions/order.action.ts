@@ -27,7 +27,7 @@ export const checkoutOrder = async (order: CheckoutOrderParams) => {
         orderId: order.buyerId,
       },
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/?profile`,
+      success_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/profile`,
       cancel_url: `${process.env.NEXT_PUBLIC_SERVER_URL}/`,
     })
     redirect(session.url!)
