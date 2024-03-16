@@ -56,7 +56,8 @@ const RegisterForm = () => {
       uploadedImageUrl = uploadedImages[0].url
     }
     try {
-      formAction(values)
+      const FormValues = { photo: uploadedImageUrl, values }
+      formAction(FormValues)
     } catch (error) {
       console.log({ error: "error at create event" + error })
     }
@@ -189,7 +190,7 @@ const RegisterForm = () => {
           size={"lg"}
           disabled={form.formState.isSubmitting}
         >
-          signUp
+          {form.formState.isSubmitting ? "Submitting..." : "signUp"}
         </Button>
         <p className=" text-red-500 text-xl">{state?.error}</p>
       </form>

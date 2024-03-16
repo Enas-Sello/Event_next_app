@@ -11,7 +11,10 @@ import User from "@/database/models/user.model"
 import bcrypt from "bcryptjs"
 
 export const register = async (previousState: any, FormData: any) => {
-  const { username, email, lastName, firstName, password, photo } = FormData
+  const {
+    values: { username, email, lastName, firstName, password },
+    photo,
+  } = FormData
   try {
     await connectToDatabase()
 
