@@ -53,6 +53,7 @@ export const authConfig: AuthConfig = {
       const user = auth?.user
       const isOnAdminPanel = request.nextUrl?.pathname.startsWith("/admin")
       const isOnEventPage = request.nextUrl?.pathname.startsWith("/events")
+      const isOnProfilePage = request.nextUrl?.pathname.startsWith("/profile")
       const isOnLoginPage = request.nextUrl?.pathname.startsWith("/login")
       // ONLY ADMIN CAN REACH THE ADMIN DASHBOARD
       if (isOnAdminPanel && !user?.isAdmin) {
@@ -61,9 +62,9 @@ export const authConfig: AuthConfig = {
 
       // ONLY AUTHENTICATED USERS CAN REACH THE BLOG PAGE
 
-      // if (isOnEventPage && !user) {
-      //   return false
-      // }
+      if (isOnProfilePage && !user) {
+        return false
+      }
 
       // ONLY UNAUTHENTICATED USERS CAN REACH THE LOGIN PAGE
 

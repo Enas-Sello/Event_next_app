@@ -1,6 +1,8 @@
 import Collection from "@/components/shared/Collection"
 import { Button } from "@/components/ui/button"
+import { IOrder } from "@/database/models/order.model"
 import { getEventsByUser } from "@/lib/actions/event.action"
+import { getOrdersByUser } from "@/lib/actions/order.action"
 import { auth } from "@/lib/auth/auth"
 import Link from "next/link"
 import React from "react"
@@ -8,20 +10,23 @@ import React from "react"
 const profile = async () => {
   const session = await auth()
   const userID = session?.user as { id: string }
-  const organizedEvents = await getEventsByUser({ userId: userID.id, page: 1 })
+  const organizedEvents = await getEventsByUser({ userId: userID?.id, page: 1 })
+  const orders = await getOrdersByUser({ userId: userID?.id, page: 1 })
+  const ordersEvents = orders?.data?.map((order: IOrder) => order?.event) || []
+  console.log(ordersEvents)
   return (
     <>
       <section className=" bg-primary-50 bg-dotted-pattern bg-cover bg-center py-5 md:py-10">
         <div className=" wrapper flex items-center justify-center sm:justify-between">
           <h3 className="h3-bold text-center sm:text-left">my tickets </h3>
-          <Button asChild size={'lg'} className=" button hidden sm:flex">
+          <Button asChild size={"lg"} className=" button hidden sm:flex">
             <Link href="/#events"> explore more events</Link>
           </Button>
         </div>
       </section>
       <section className="wrapper my-8">
         <Collection
-          data={[]}
+          data={ordersEvents}
           emptyTitle="No Events tickets purchased yet"
           emptyStateSubtext="No Worries Plenty of exciting events to explore"
           collectionType="My_Tickets"
@@ -36,7 +41,7 @@ const profile = async () => {
           <h3 className="h3-bold text-center sm:text-left">
             Events organized{" "}
           </h3>
-          <Button asChild size={'lg'} className=" button hidden sm:flex">
+          <Button asChild size={"lg"} className=" button hidden sm:flex">
             <Link href="/events/create"> create new event</Link>
           </Button>
         </div>
