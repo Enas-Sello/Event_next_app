@@ -1,4 +1,3 @@
-import { NextApiRequest, NextApiResponse } from "next"
 import { NextRequest } from "next/server"
 interface SessionBase {
   user: {
@@ -62,9 +61,9 @@ export const authConfig: AuthConfig = {
 
       // ONLY AUTHENTICATED USERS CAN REACH THE BLOG PAGE
 
-      if (isOnEventPage && !user) {
-        return false
-      }
+      // if (isOnEventPage && !user) {
+      //   return false
+      // }
 
       // ONLY UNAUTHENTICATED USERS CAN REACH THE LOGIN PAGE
 

@@ -1,8 +1,10 @@
+import CheckOutButton from "@/components/shared/CheckOutButton"
 import Collection from "@/components/shared/Collection"
 import {
   getEventById,
   getRelatedEventsByCategory,
 } from "@/lib/actions/event.action"
+import { auth } from "@/lib/auth/auth"
 import { formatDateTime } from "@/lib/utils"
 import { SearchParamProps } from "@/types"
 import Image from "next/image"
@@ -18,6 +20,8 @@ const EventDetails = async ({
     page: searchParams.page as string,
     limit: 1,
   })
+  const session = await auth()
+  const userID = session?.user as { id: string }
   return (
     <>
       <section className="flex justify-center bg-primary-50 bg-dotted-pattern bg-contain">
@@ -50,7 +54,7 @@ const EventDetails = async ({
                 </p>
               </div>
             </div>
-            {/*checkout */}
+            <CheckOutButton userID={userID?.id} event={event} />
             {/* date location */}
             <div className=" flex flex-col gap-5">
               <div className=" flex gap-2 md:gap-3">
